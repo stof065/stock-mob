@@ -13,6 +13,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CommandePage } from '../pages/commande/commande';
 import { LoginPage } from '../pages/login/login';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { LoginPage } from '../pages/login/login';
     ListPage
   ],
   imports: [
-    
+    HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
   ],
