@@ -1,0 +1,51 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+
+<ion-content padding style="background: rgb(206, 203, 203)">
+
+ 
+    <div padding  id="cloud-layer" style="width : 80%; ; margin: auto; position: fixed; top: 25%; left : 10%; background: rgb(206, 203, 203)">
+        
+           <ion-row style="text-align : center;">
+             <ion-col>
+               <img style="width : 100px" src="assets/imgs/user.png" />
+             </ion-col>
+           </ion-row>
+        
+           <ion-row>
+             <ion-col>
+               <ion-list inset style="margin : 0">
+        
+                 <ion-item >
+                   <ion-label style="padding : 5px">Username</ion-label>
+                   <ion-input type="text" [(ngModel)]="cridentiel.login"></ion-input>
+                 </ion-item>
+        
+                 <ion-item>
+                   <ion-label style="padding : 5px">Password</ion-label>
+                   <ion-input type="password" [(ngModel)]="cridentiel.password"></ion-input>
+                 </ion-item>
+        
+               </ion-list>
+             </ion-col>
+           </ion-row>
+        
+           <ion-row>
+             <ion-col style="text-align: right">
+               <button ion-button class="login-button" (click)="login();" style="background  : green" >Valider</button>
+             </ion-col>
+             <ion-col style="text-align: left">
+                <button ion-button class="clear-button" style="background : red" (click)="login();" >Annuler</button>
+              </ion-col>
+           </ion-row>
+        
+         </div>
+
+
+</ion-content>
