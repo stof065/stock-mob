@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { RequestOptions } from '@angular/http';
 import { Headers } from '@angular/http';
+import {AcceuilPage} from '../acceuil/AcceuilPage'
 
 /**
  * Generated class for the LoginPage page.
@@ -20,9 +21,11 @@ export class LoginPage {
 
 
 
-  apiServerEndPoint: String = "http://localhost:8080/cabinet/services/";
+  apiServerEndPoint: String = "http://192.168.1.14:8080/cabinet/services/";
 
   cridentiel: Cridentiel;
+
+  loading : boolean = true ;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: Http) {
     this.cridentiel = new Cridentiel;
@@ -40,6 +43,7 @@ export class LoginPage {
       // check with rest /me
       this.http.get(this.apiServerEndPoint + "login/me",options).subscribe(res => {
         console.log("redirection ...");
+        this.navCtrl.push(AcceuilPage);
 
 
       }, error => {
@@ -47,7 +51,7 @@ export class LoginPage {
         console.log("error stay in this page");
 
 
-      });
+      },()=>{this.loading = false;});
     }
 
 
@@ -60,8 +64,9 @@ export class LoginPage {
       res => {
       console.log(res.text())
 
-        if (res.status == 200) {
+        if (res.ok) {
           window.localStorage.setItem("token",  res.text());
+          this.navCtrl.push(AcceuilPage);
         }
       }, error => {
         alert(error.json().message);
