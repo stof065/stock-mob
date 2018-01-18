@@ -14,11 +14,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { CommandePage } from '../pages/commande/commande';
 import { LoginPage } from '../pages/login/login';
 import { HttpModule } from '@angular/http';
+import { DatePipe } from '@angular/common';
+import { CommandeDetailPage } from '../pages/commande-detail/commande-detail';
 
 @NgModule({
   declarations: [
     MyApp,
-    AcceuilPage,LoginPage,
+    AcceuilPage,LoginPage,CommandePage,CommandeDetailPage,
     ItemDetailsPage,
     ListPage
   ],
@@ -29,13 +31,14 @@ import { HttpModule } from '@angular/http';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    MyApp,CommandeDetailPage,
     AcceuilPage,
-    LoginPage,
+    LoginPage,CommandePage,
     ItemDetailsPage,
     ListPage
   ],
   providers: [
+    DatePipe,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
