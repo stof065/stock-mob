@@ -10,6 +10,7 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CommandePage } from '../pages/commande/commande';
+import { CustomHttpService } from '../config/http/CustomHttp';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { CommandePage } from '../pages/commande/commande';
     ListPage
   ],
   providers: [
+    CustomHttpService,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
