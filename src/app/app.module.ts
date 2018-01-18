@@ -3,23 +3,27 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
+
 import { AcceuilPage } from '../pages/acceuil/AcceuilPage';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { CommandePage } from '../pages/commande/commande';
+import { LoginPage } from '../pages/login/login';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
     MyApp,
-    AcceuilPage,
-    CommandePage,
+    AcceuilPage,LoginPage,
     ItemDetailsPage,
     ListPage
   ],
   imports: [
+    HttpModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
   ],
@@ -27,7 +31,7 @@ import { CommandePage } from '../pages/commande/commande';
   entryComponents: [
     MyApp,
     AcceuilPage,
-    CommandePage,
+    LoginPage,
     ItemDetailsPage,
     ListPage
   ],
