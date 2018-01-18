@@ -10,23 +10,30 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { CommandePage } from '../pages/commande/commande';
 import { ReferencePage } from '../pages/reference/reference';
 import { LoginPage } from '../pages/login/login';
+import { RequestOptions } from '@angular/http';
+import { Http } from '@angular/http';
+import { Headers } from '@angular/http';
 
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+
+
+  apiServerEndPoint: String = "http://localhost:8080/cabinet/services/";
+
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = LoginPage;
+  rootPage = AcceuilPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(
     public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
-    public splashScreen: SplashScreen
+    public splashScreen: SplashScreen,private http : Http
   ) {
     this.initializeApp();
 
@@ -35,7 +42,7 @@ export class MyApp {
       { title: 'Clients', component: AcceuilPage },
       { title: 'Fournisseurs', component: ListPage },
       { title: 'Commande', component: CommandePage },
-      { title: 'Refernce Marque', component: ReferencePage }
+      { title: 'Reference Marque', component: ReferencePage }
     ];
   }
 
@@ -43,6 +50,25 @@ export class MyApp {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+
+
+  // check username is authenticated and token is valid
+  if (window.localStorage.getItem("token") != null) {
+    
+          let options = new RequestOptions ; 
+          options.headers = new Headers() ; 
+          options.headers.append("Authorization","Bearer" + window.localStorage.getItem("token") ) ; 
+          // check with rest /me
+          this.http.get(this.apiServerEndPoint + "login/me",options).subscribe(res => {
+            console.log("redirection ...");
+            this.rootPage = AcceuilPage ;
+    
+    
+          }, error => {
+            console.log("error stay in this page");
+          });
+        }
+    
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });

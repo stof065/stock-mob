@@ -4,8 +4,8 @@ import {LoginPage} from '../login/login'
 
 
 @Component({
-  selector: 'page-hello-ionic',
-  templateUrl: 'hello-ionic.html'
+  selector: 'acceuil',
+  templateUrl: 'acceuil.html'
 })
 export class AcceuilPage {
   constructor(private navCtrl : NavController) {

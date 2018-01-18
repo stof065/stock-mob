@@ -4,6 +4,7 @@ import { Http } from '@angular/http';
 import { RequestOptions } from '@angular/http';
 import { Headers } from '@angular/http';
 import {AcceuilPage} from '../acceuil/AcceuilPage'
+import { MyApp } from '../../app/app.component';
 
 /**
  * Generated class for the LoginPage page.
@@ -21,7 +22,7 @@ export class LoginPage {
 
 
 
-  apiServerEndPoint: String = "http://192.168.1.14:8080/cabinet/services/";
+  apiServerEndPoint: String = "http://localhost:8080/cabinet/services/";
 
   cridentiel: Cridentiel;
 
@@ -34,28 +35,7 @@ export class LoginPage {
   ionViewDidLoad() {
 
     console.log('ionViewDidLoad LoginPage');
-    // check username is authenticated and token is valid
-    if (window.localStorage.getItem("token") != null) {
-
-      let options = new RequestOptions ; 
-      options.headers = new Headers() ; 
-      options.headers.append("Authorization","Bearer" + window.localStorage.getItem("token") ) ; 
-      // check with rest /me
-      this.http.get(this.apiServerEndPoint + "login/me",options).subscribe(res => {
-        console.log("redirection ...");
-        this.navCtrl.push(AcceuilPage);
-
-
-      }, error => {
-
-        console.log("error stay in this page");
-
-
-      },()=>{this.loading = false;});
-    }
-
-
-
+  
   }
 
   login() {
