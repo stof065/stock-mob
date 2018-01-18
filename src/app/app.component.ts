@@ -13,6 +13,7 @@ import { LoginPage } from '../pages/login/login';
 import { RequestOptions } from '@angular/http';
 import { Http } from '@angular/http';
 import { Headers } from '@angular/http';
+import { ConfigConstantes } from '../config/Config';
 
 
 @Component({
@@ -21,12 +22,12 @@ import { Headers } from '@angular/http';
 export class MyApp {
 
 
-  apiServerEndPoint: String = "http://localhost:8080/cabinet/services/";
+
 
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = AcceuilPage;
+  rootPage = LoginPage;
   pages: Array<{title: string, component: any}>;
 
   constructor(
@@ -52,6 +53,8 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
 
 
+
+      let self = this ;
   // check username is authenticated and token is valid
   if (window.localStorage.getItem("token") != null) {
     
@@ -59,9 +62,9 @@ export class MyApp {
           options.headers = new Headers() ; 
           options.headers.append("Authorization","Bearer" + window.localStorage.getItem("token") ) ; 
           // check with rest /me
-          this.http.get(this.apiServerEndPoint + "login/me",options).subscribe(res => {
+          this.http.get(ConfigConstantes.apiServerEndPoint + "login/me",options).subscribe(res => {
             console.log("redirection ...");
-            this.rootPage = AcceuilPage ;
+            this.nav.setRoot(AcceuilPage) ;
     
     
           }, error => {
