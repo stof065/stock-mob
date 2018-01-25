@@ -54,14 +54,14 @@ export class CommandeDetailPage {
        
           //this.commandeDetails.push(cd);
           this.commandeDetails[i] = new CommandeDetail ;
-        
+          this.commandeDetails[i].produit.marqueLogo  =  cd.produit.reference.marque.logo ;
           this.commandeDetails[i].quantite  = cd.quantite;
           this.commandeDetails[i].prixVente = cd.prixVente;
           this.commandeDetails[i].produit.marqueLibelle  = cd.produit.reference.marque.libelle ;
           this.commandeDetails[i].produit.reference  = cd.produit.reference.referenceId ;
           this.commandeDetails[i].produit.imageUrl  = cd.produit.reference.url ;
           i++ ;
-          console.log(cd);
+          console.log(this.commandeDetails[i]);
 
         });
 
@@ -100,6 +100,7 @@ export class CommandeDetail {
 
 export class Produit {
   marqueLibelle: String;
+  marqueLogo : String ;
   reference: String;
   imageUrl : String ;
 }

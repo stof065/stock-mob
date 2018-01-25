@@ -28,13 +28,13 @@ export class MyApp {
 
   // make HelloIonicPage the root (or first) page
   rootPage = LoginPage;
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{ title: string, component: any }>;
 
   constructor(
     public platform: Platform,
     public menu: MenuController,
     public statusBar: StatusBar,
-    public splashScreen: SplashScreen,private http : Http
+    public splashScreen: SplashScreen, private http: Http
   ) {
     this.initializeApp();
 
@@ -54,24 +54,34 @@ export class MyApp {
 
 
 
-      let self = this ;
-  // check username is authenticated and token is valid
-  if (window.localStorage.getItem("token") != null) {
-    
-          let options = new RequestOptions ; 
-          options.headers = new Headers() ; 
-          options.headers.append("Authorization","Bearer" + window.localStorage.getItem("token") ) ; 
-          // check with rest /me
-          this.http.get(ConfigConstantes.apiServerEndPoint + "login/me",options).subscribe(res => {
+      let self = this;
+      // check username is authenticated and token is valid
+      if (window.localStorage.getItem("token") != null) {
+
+        let options = new RequestOptions;
+        options.headers = new Headers();
+        options.headers.append("Authorization", "Bearer" + window.localStorage.getItem("token"));
+        // check with rest /me
+        this.http.get(ConfigConstantes.apiServerEndPoint + "login/me", options).subscribe(res => {
+
+          if (res.json()) {
             console.log("redirection ...");
-            this.nav.setRoot(AcceuilPage) ;
-    
-    
-          }, error => {
-            console.log("error stay in this page");
-          });
-        }
-    
+            LoginPage.loading  = false ;            
+            this.nav.setRoot(AcceuilPage);
+
+          } else {
+            
+            this.nav.setRoot(LoginPage);
+            LoginPage.loading  = true ;
+            
+          }
+        }, error => {
+          console.log("error stay in this page");
+          LoginPage.loading  = true ;          
+          this.nav.setRoot(LoginPage);
+        },);
+      }
+
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });

@@ -35,11 +35,9 @@
   <ion-list>
     <ion-item *ngFor="let cd of commandeDetails" (click)="selectCommandeDetail(cd);">
 
-
-
-
         <div style="float : left">
-          <ion-img widt="60" src="{{cd.produit.imageUrl}}"></ion-img>
+          <img style="width : 100px ; height : 40px" src="data:image/png;base64,{{cd.produit.marqueLogo}}"  />
+               
 
           <label>
             {{cd.produit.marqueLibelle}} {{cd.produit.reference}}
