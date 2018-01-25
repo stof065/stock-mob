@@ -35,22 +35,35 @@
   <ion-list>
     <ion-item *ngFor="let cd of commandeDetails" (click)="selectCommandeDetail(cd);">
 
-        <div style="float : left">
-          <img style="width : 100px ; height : 40px" src="data:image/png;base64,{{cd.produit.marqueLogo}}"  />
-               
+      <div style="float : left ; width : 100%">
+        <table style="width : 100%">
+          <tr>
+            <td>
+              <img style="width : 100px ; height : 40px" src="data:image/png;base64,{{cd.produit.marqueLogo}}" />
+            </td>
+            <td style="padding-left : 0px !important">
+              <label>
+                {{cd.produit.marqueLibelle}} {{cd.produit.reference}}
+              </label>
+            </td>
+            <td>
+              <div style="text-align : right ; width : 100%">
+                <ion-badge style="background : green">
+                  {{cd.quantite}} U
+                </ion-badge>
 
-          <label>
-            {{cd.produit.marqueLibelle}} {{cd.produit.reference}}
-          </label>
-        </div>
+                <ion-badge item-end>{{cd.prixVente}} DH</ion-badge>
+              </div>
+            </td>
+          </tr>
+        </table>
 
-        <div style="float : right">
-          <ion-badge style="background : green">
-            {{cd.quantite}} U
-          </ion-badge>
 
-          <ion-badge item-end>{{cd.prixVente}} DH</ion-badge>
-        </div>
+
+
+      </div>
+
+
     </ion-item>
   </ion-list>
 
