@@ -27,7 +27,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = LoginPage;
+  rootPage = null;
   pages: Array<{ title: string, component: any }>;
 
   constructor(
@@ -80,6 +80,9 @@ export class MyApp {
           LoginPage.loading  = true ;          
           this.nav.setRoot(LoginPage);
         },);
+      }else{
+        this.nav.setRoot(LoginPage);
+        LoginPage.loading  = true ;
       }
 
       this.statusBar.styleDefault();
@@ -91,6 +94,6 @@ export class MyApp {
     // close the menu when clicking a link from the menu
     this.menu.close();
     // navigate to the new page if it is not the current page
-    this.nav.setRoot(page.component);
+    this.nav.push(page.component);
   }
 }

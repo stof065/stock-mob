@@ -17,12 +17,13 @@ import { HttpModule } from '@angular/http';
 import { CustomHttpService } from '../config/http/CustomHttp';
 import { CommandeDetailPage } from '../pages/commande-detail/commande-detail';
 import { DatePipe } from '@angular/common';
+import { CreateCommandePage } from '../pages/create-commande/create-commande';
 
 @NgModule({
   declarations: [
     MyApp,
     AcceuilPage, LoginPage, CommandePage, CommandeDetailPage,
-    ItemDetailsPage,
+    ItemDetailsPage,CreateCommandePage,
     ListPage
   ],
   imports: [
@@ -33,7 +34,7 @@ import { DatePipe } from '@angular/common';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AcceuilPage, CommandePage, CommandeDetailPage,
+    AcceuilPage, CommandePage, CommandeDetailPage,CreateCommandePage,
     LoginPage,
     ItemDetailsPage,
     ListPage
