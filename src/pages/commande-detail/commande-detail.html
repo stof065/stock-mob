@@ -18,17 +18,43 @@
 
 
   <h2 style="text-align : center ; padding : 10px ;">Information Client</h2>
-  <ion-item>
-    {{client.nom}}
-  </ion-item>
+  <table class="formtable">
+    <tr>
+      <td> nom </td>
+      <td>
+        <ion-item>
+          {{client.nom}}
+        </ion-item>
+      </td>
+    </tr>
 
-  <ion-item>
-    {{client.prenom}}
-  </ion-item>
 
-  <ion-item>
-    {{client.cin}}
-  </ion-item>
+  </table>
+
+  <table class="formtable">
+    <tr>
+      <td> prenom </td>
+      <td>
+        <ion-item>
+          {{client.nom}}
+        </ion-item>
+      </td>
+    </tr>
+
+
+  </table>
+
+
+  <table class="formtable">
+    <tr>
+      <td> cin </td>
+      <td>
+        <ion-item>
+          {{client.cin}}
+        </ion-item>
+      </td>
+    </tr>
+  </table>
 
 
   <h2 style="text-align : center ; padding : 10px ;">Panier</h2>
@@ -36,7 +62,7 @@
     <ion-item *ngFor="let cd of commandeDetails" (click)="selectCommandeDetail(cd);">
 
       <div style="float : left ; width : 100%">
-        <table style="width : 100%">
+        <table style="border : 1px">
           <tr>
             <td>
               <img style="width : 100px ; height : 40px" src="data:image/png;base64,{{cd.produit.marqueLogo}}" />

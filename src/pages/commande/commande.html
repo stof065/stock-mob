@@ -6,9 +6,9 @@
 -->
 <ion-header>
 
- <ion-navbar>
-   <ion-title>Liste des commandes</ion-title>
- </ion-navbar>
+    <ion-navbar>
+        <ion-title>Liste des commandes</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
@@ -16,28 +16,30 @@
 
 
 <ion-content padding>
-   <ion-buttons start>
-       <button ion-button icon-only (click)="ajouterCommande();">
-           <ion-icon name="add" ></ion-icon>
-       </button>
-       <button ion-button icon-only (click)="rechercherCommande();">
-           <ion-icon name="search" ></ion-icon>
-       </button>
-   </ion-buttons>
 
-   <div style="margin-top: 10px">
+    <div class="actiontoolbar">
 
-       <ion-list inset>
-           
-             <ion-item 
-             style="cursor : pointer"
-             *ngFor="let c of commandes ; " (click)="selectCommande(c)">
-               <ion-label>{{c.description}}</ion-label>
+        <ion-buttons start>
+            <button ion-button icon-only (click)="ajouterCommande();">
+                <ion-icon name="add"></ion-icon>
+            </button>
+            <button ion-button icon-only (click)="rechercherCommande();">
+                <ion-icon name="search"></ion-icon>
+            </button>
+        </ion-buttons>
+    </div>
 
-               <ion-label>{{c.dateCommande}}</ion-label>
+    <div style="margin-top: 10px">
 
-               <ion-label>{{c.statusCommande}}</ion-label>
-             </ion-item>
-           </ion-list>
-   </div>
+        <ion-list inset>
+
+            <ion-item style="cursor : pointer" *ngFor="let c of commandes ; " (click)="selectCommande(c)">
+                <ion-label>{{c.description}}</ion-label>
+
+                <ion-label>{{c.dateCommande}}</ion-label>
+
+                <ion-label>{{c.statusCommande}}</ion-label>
+            </ion-item>
+        </ion-list>
+    </div>
 </ion-content>

@@ -5,6 +5,7 @@ import { ConfigConstantes } from '../../config/Config';
 import { DatePipe } from '@angular/common';
 import { CommandeDetailPage } from '../commande-detail/commande-detail';
 import { CustomHttpService } from '../../config/http/CustomHttp';
+import { CreateCommandePage } from '../create-commande/create-commande';
 
 /**
  * Generated class for the CommandePage page.
@@ -54,6 +55,7 @@ export class CommandePage {
   ajouterCommande() {
 
     console.log("ajouter la commande");
+    this.navCtrl.push(CreateCommandePage) ;
 
   }
 

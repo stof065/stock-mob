@@ -41,26 +41,28 @@ export class CommandeDetailPage {
         console.log(this.client);
       })
     //
+    this.callCommandeDetail(null);
   }
 
-  doInfinite(event) {
+
+  callCommandeDetail(event) {
 
     this.customHttp.get(ConfigConstantes.apiServerEndPoint + "detailcommandes/" + this.commande.id + "/all")
       .subscribe(res => {
         // init command detail 
         this.commandeDetails = [];
-        let i = 0 ; 
+        let i = 0;
         res.json().forEach(cd => {
-       
+
           //this.commandeDetails.push(cd);
-          this.commandeDetails[i] = new CommandeDetail ;
-          this.commandeDetails[i].produit.marqueLogo  =  cd.produit.reference.marque.logo ;
-          this.commandeDetails[i].quantite  = cd.quantite;
+          this.commandeDetails[i] = new CommandeDetail;
+          this.commandeDetails[i].produit.marqueLogo = cd.produit.reference.marque.logo;
+          this.commandeDetails[i].quantite = cd.quantite;
           this.commandeDetails[i].prixVente = cd.prixVente;
-          this.commandeDetails[i].produit.marqueLibelle  = cd.produit.reference.marque.libelle ;
-          this.commandeDetails[i].produit.reference  = cd.produit.reference.referenceId ;
-          this.commandeDetails[i].produit.imageUrl  = cd.produit.reference.url ;
-          i++ ;
+          this.commandeDetails[i].produit.marqueLibelle = cd.produit.reference.marque.libelle;
+          this.commandeDetails[i].produit.reference = cd.produit.reference.referenceId;
+          this.commandeDetails[i].produit.imageUrl = cd.produit.reference.url;
+          i++;
           console.log(this.commandeDetails[i]);
 
         });
@@ -69,14 +71,22 @@ export class CommandeDetailPage {
 
       }, err => { }, () => {
         console.log("end async call");
-        event.complete();
+        
+        if (event != null) {
+          console.log(event.complete())
+        }
+
       })
 
   }
 
+  doInfinite(event) {
+    this.callCommandeDetail(event);
+  }
 
-  selectCommandeDetail(cd){
-    console.log(cd) ; 
+
+  selectCommandeDetail(cd) {
+    console.log(cd);
   }
 
 }
@@ -100,7 +110,7 @@ export class CommandeDetail {
 
 export class Produit {
   marqueLibelle: String;
-  marqueLogo : String ;
+  marqueLogo: String;
   reference: String;
-  imageUrl : String ;
+  imageUrl: String;
 }
