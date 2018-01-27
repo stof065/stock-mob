@@ -28,33 +28,32 @@
 
   <div>
     <ion-list>
-      <table style="width : 100%">
-        <tr>
-          <td>
-            <ion-item>Produit</ion-item>
-          </td>
-          <td>
-            <ion-item>Quantite</ion-item>
-          </td>
-          <td>
-            <ion-item>Prix</ion-item>
-          </td>
-          <td>
-            <ion-item>
-              <table>
-                <tr>
-                  <td>
-                    <ion-icon  ios="ios-card" md="md-card"></ion-icon>
-                  </td>
-                  <td>
-                    <ion-icon name="remove"></ion-icon>
-                  </td>
-                </tr>
-              </table>
-            </ion-item>
-          </td>
-        </tr>
-      </table>
+      <ion-item *ngFor="let cd of commandeDetails" (click)="editCommandeDetail(cd);" >
+       
+        <table style="width : 100%">
+          <tr>
+            <td>
+              <ion-item>{{cd.produit.marqueLogo}}</ion-item>
+            </td>
+            <td>
+              <ion-item>{{cd.produit.marqueLibelle}}</ion-item>
+            </td>
+            <td>
+              <ion-item>{{cd.quantite}}</ion-item>
+            </td>
+            <td>
+                <ion-item>{{cd.prixVente}}</ion-item>
+              </td>
+            <td style="width : 90px">
+              <ion-item>
+                <i class="fa fa-pencil-square-o fa-2x" (click)="editCommandeDetail(cd) ;" aria-hidden="true"></i>
+                <i class="fa fa-trash-o fa-2x" (click)="removeCommandeDetail(cd) ;" aria-hidden="true"></i>
+
+              </ion-item>
+            </td>
+          </tr>
+        </table>
+      </ion-item>
 
 
 
