@@ -18,11 +18,12 @@ import { CustomHttpService } from '../config/http/CustomHttp';
 import { CommandeDetailPage } from '../pages/commande-detail/commande-detail';
 import { DatePipe } from '@angular/common';
 import { CreateCommandePage } from '../pages/create-commande/create-commande';
+import {ProduitComponent} from '../components/produit/produit'
 
 @NgModule({
   declarations: [
     MyApp,
-    AcceuilPage, LoginPage, CommandePage, CommandeDetailPage,
+    AcceuilPage, LoginPage, CommandePage, CommandeDetailPage,ProduitComponent,
     ItemDetailsPage,CreateCommandePage,
     ListPage
   ],

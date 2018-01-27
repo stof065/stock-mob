@@ -21,17 +21,17 @@
 
   <h2>produits :</h2>
   <ion-buttons start>
-    <button ion-button icon-only>
-      <ion-icon name="add"></ion-icon>
+    <button ion-button icon-only (click)="addCommandeDetail();">
+      <ion-icon name="add" ></ion-icon>
     </button>
   </ion-buttons>
 
   <div>
     <ion-list>
-      <ion-item *ngFor="let cd of commandeDetails" (click)="editCommandeDetail(cd);" >
-       
+      <ion-item *ngFor="let cd of commandeDetails" (click)="editCommandeDetail(cd);">
+
         <table style="width : 100%">
-          <tr>
+          <tr style="border-bottom : 1px solid gray">
             <td>
               <ion-item>{{cd.produit.marqueLogo}}</ion-item>
             </td>
@@ -42,8 +42,8 @@
               <ion-item>{{cd.quantite}}</ion-item>
             </td>
             <td>
-                <ion-item>{{cd.prixVente}}</ion-item>
-              </td>
+              <ion-item>{{cd.prixVente}}</ion-item>
+            </td>
             <td style="width : 90px">
               <ion-item>
                 <i class="fa fa-pencil-square-o fa-2x" (click)="editCommandeDetail(cd) ;" aria-hidden="true"></i>
@@ -59,6 +59,16 @@
 
     </ion-list>
 
+    <div [hidden] ="!displayProductList">
+      <h3>produits disponibles :</h3>
+      <ion-list>
+        <ion-item *ngFor="let pd  of produits" style="text-align : center" (click)= "selectedProduit(pd);">
+          <produit [produit]="pd"></produit>
+
+        </ion-item>
+      </ion-list>
+
+    </div>
 
 
   </div>
