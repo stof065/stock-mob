@@ -1,0 +1,18 @@
+<!-- Generated template for the PanierItemComponent component -->
+<div style="background: white; height : 100%">
+  <h2>
+    {{panierItem.marque}} {{panierItem.reference}} </h2>
+  <div class="formPanel">
+    <ion-label>quantite</ion-label>
+    <ion-input type="number" [(ngModel)]="panierItem.quantite"></ion-input>
+
+    <ion-label>prix</ion-label>
+    <ion-input type="number" [(ngModel)]="panierItem.prix"></ion-input>
+
+
+  </div>
+  <div style="text-align : center" class="ActionForm">
+      <button (click)="addPanierItem()">valider</button>
+      <button (click)="clearPanierItem()">Annuler</button>
+  </div>
+</div>

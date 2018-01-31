@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CommandeDetail } from '../commande-detail/commande-detail';
 import { CustomHttpService } from '../../config/http/CustomHttp'
 import { ConfigConstantes } from '../../config/Config'
+import { Element } from '@angular/compiler';
+import { ModalController } from 'ionic-angular';
+import { LoginPage } from '../login/login';
+import { PanierItemComponent } from '../../components/panier-item/panier-item';
 
 /**
  * Generated class for the CreateCommandePage page.
@@ -22,21 +26,43 @@ export class CreateCommandePage {
   commandeDetails: CommandeDetail[] = [];
   CommandeDetail: CommandeDetail = new CommandeDetail;
   produits = [];
-  displayProductList = false ;
+  
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private http: CustomHttpService) {
+  selectedClient ;
+  clients = [];
+  displayProductList = false;
+
+  displayPanier = true;
+
+  constructor(public navCtrl: NavController,
+    private modalCtrl : ModalController , public navParams: NavParams, private http: CustomHttpService) {
   }
 
   ionViewDidLoad() {
     let cd = new CommandeDetail;
     cd.prixVente = 1200;
     cd.quantite = 500;
+    // fetch clients
+    this.clients = [];
+
+    this.http.get(ConfigConstantes.apiServerEndPoint + "clients/all")
+      .subscribe(res => {
+        console.log(res);
+        res.json().forEach(element => {
+          this.clients.push({
+            "nom": element.nom, "prenom": element.prenom,
+            "cin": element.cin
+          });
+        });
+      });
+
     this.commandeDetails.push(cd);
     console.log('ionViewDidLoad CreateCommandePage');
 
     this.http.get(ConfigConstantes.apiServerEndPoint + "produits/all").subscribe(res => {
+      this.produits = [];
+
       res.json().forEach(element => {
-        this.produits = [];
         this.produits.push({
           "logoMarque": "",
           "reference": element.reference.referenceId, "quantite": element.quantiteStocke, "urlReference": element.reference.url
@@ -60,7 +86,8 @@ export class CreateCommandePage {
 
 
     console.log("clicked !!");
-    this.displayProductList = true ;
+    this.displayProductList = true;
+    this.displayPanier = false;
     this.CommandeDetail = new CommandeDetail;
     // init product list from server 
 
@@ -68,8 +95,21 @@ export class CreateCommandePage {
 
   }
 
+  retourPanier() {
+    this.displayProductList = false;
+    this.displayPanier = true;
+  }
+
   selectedProduit(pd) {
     console.log(pd);
+    let loginDialog = this.modalCtrl.create(PanierItemComponent)  ; 
+    loginDialog.present();
+
+  }
+  selectClient(event, c) {
+    event.path[5].classList.toggle("selected");
+    this.selectedClient = c ;
+ 
   }
 
 }

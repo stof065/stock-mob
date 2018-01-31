@@ -2,12 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AcceuilPage } from '../pages/acceuil/AcceuilPage';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
-
+import { TooltipModule } from 'angular2-tooltips';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,22 +19,23 @@ import { CommandeDetailPage } from '../pages/commande-detail/commande-detail';
 import { DatePipe } from '@angular/common';
 import { CreateCommandePage } from '../pages/create-commande/create-commande';
 import {ProduitComponent} from '../components/produit/produit'
+import { PanierItemComponent } from '../components/panier-item/panier-item';
 
 @NgModule({
   declarations: [
     MyApp,
     AcceuilPage, LoginPage, CommandePage, CommandeDetailPage,ProduitComponent,
-    ItemDetailsPage,CreateCommandePage,
+    ItemDetailsPage,CreateCommandePage,PanierItemComponent,
     ListPage
   ],
   imports: [
-    HttpModule,
-    BrowserModule,
+    HttpModule,TooltipModule,
+    BrowserModule,BrowserAnimationsModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
+    MyApp,PanierItemComponent,
     AcceuilPage, CommandePage, CommandeDetailPage,CreateCommandePage,
     LoginPage,
     ItemDetailsPage,
