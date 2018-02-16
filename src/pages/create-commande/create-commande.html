@@ -80,10 +80,33 @@
 
       <div [hidden]="!displayProductList">
         <i class="fa fa-reply fa-2x" tooltip="retourner vers la liste" (click)="retourPanier() ;"> </i>
+        
+        <div class="formPanel">
+          <label> marque :</label>
+          <input />
+          <br/>
+          <label> reference :</label>
+          <input />
+        </div>
+        
         <h3 padding>produits disponibles :</h3>
+        <i class="fa fa-info-circle fa-2x" aria-hidden="true" tooltip="recaputilatif de la commande" (click)="recapCommande();"></i> 
         <ion-list>
-          <ion-item *ngFor="let pd  of produits" style="text-align : center" (click)="selectedProduit(pd);">
-            <produit [produit]="pd"></produit>
+          <ion-item *ngFor="let pd  of paniers" style="text-align : center" (click)="selectedProduit(pd);">
+
+            <div>
+               
+              <div class="toolbarindicator"  >
+                 
+                  <div style="margin-top : 10px" [hidden]="pd.quantite == '' || pd.prix == ''" >
+                      <span>quantité : {{pd.quantite}}</span>
+                      <span>prix :{{pd.prix}} DH</span>
+                  </div>
+              </div>
+              <produit [produit]="pd.produit"></produit>
+            </div>
+
+
 
           </ion-item>
         </ion-list>

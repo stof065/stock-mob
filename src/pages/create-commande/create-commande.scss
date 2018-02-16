@@ -1,3 +1,26 @@
 page-create-commande {
 
 }
+
+.toolbarindicator{
+    float:right ;
+    min-width : 100px ;
+    padding : 10px;
+}
+.toolbarindicator span:nth-child(2n+1) {
+
+    padding : 0.5em ;
+    background: green ; 
+    color : white ; 
+    font-family: monospace
+
+}
+
+.toolbarindicator span:nth-child(2n) {
+    
+        padding : 0.5em ;
+        background: red ; 
+        color : white ; 
+        font-family: monospace
+    
+    }

@@ -25,17 +25,19 @@ export class CreateCommandePage {
 
   commandeDetails: CommandeDetail[] = [];
   CommandeDetail: CommandeDetail = new CommandeDetail;
-  produits = [];
-  
+  paniers = [];
 
-  selectedClient ;
+  validPanierItem = [];
+
+
+  selectedClient;
   clients = [];
   displayProductList = false;
 
   displayPanier = true;
 
   constructor(public navCtrl: NavController,
-    private modalCtrl : ModalController , public navParams: NavParams, private http: CustomHttpService) {
+    private modalCtrl: ModalController, public navParams: NavParams, private http: CustomHttpService) {
   }
 
   ionViewDidLoad() {
@@ -60,13 +62,14 @@ export class CreateCommandePage {
     console.log('ionViewDidLoad CreateCommandePage');
 
     this.http.get(ConfigConstantes.apiServerEndPoint + "produits/all").subscribe(res => {
-      this.produits = [];
+      this.paniers = [];
 
       res.json().forEach(element => {
-        this.produits.push({
+        let produit = {
           "logoMarque": "",
           "reference": element.reference.referenceId, "quantite": element.quantiteStocke, "urlReference": element.reference.url
-        })
+        };
+        this.paniers.push({ "produit": produit, "quantite": "", "prix": "" });
 
       });
     })
@@ -81,6 +84,8 @@ export class CreateCommandePage {
 
     this.commandeDetails.splice(this.commandeDetails.indexOf(cd), 1);
   }
+
+  recapCommande() { }
 
   addCommandeDetail() {
 
@@ -102,14 +107,24 @@ export class CreateCommandePage {
 
   selectedProduit(pd) {
     console.log(pd);
-    let loginDialog = this.modalCtrl.create(PanierItemComponent)  ; 
-    loginDialog.present();
+    let panierItem = this.modalCtrl.create(PanierItemComponent, { "produit": pd });
+    panierItem.onDidDismiss(data => {
+      if (data.quantite != "" && data.prix != "") {
+        this.validPanierItem.push(pd);
+
+      } else {
+        // remove item if exist 
+
+
+      }
+    });
+    panierItem.present();
 
   }
   selectClient(event, c) {
     event.path[5].classList.toggle("selected");
-    this.selectedClient = c ;
- 
+    this.selectedClient = c;
+
   }
 
 }

@@ -16,7 +16,6 @@ export class ProduitComponent {
   @Input() produit = {"logoMarque" : "" , "quantite" : "200", "urlReference" : "","reference" : ""} ;
 
   constructor() {
-    console.log('Hello ProduitComponent Component');
    
   }
 

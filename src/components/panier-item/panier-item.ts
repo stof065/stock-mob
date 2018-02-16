@@ -1,4 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { NavController } from 'ionic-angular/navigation/nav-controller';
+import { NavParams } from 'ionic-angular/navigation/nav-params';
+import { ViewController } from 'ionic-angular/navigation/view-controller';
 
 /**
  * Generated class for the PanierItemComponent component.
@@ -12,16 +15,30 @@ import { Component, Input } from '@angular/core';
 })
 export class PanierItemComponent {
 
-  @Input() panierItem: PanierItem
+  @Input() panierItem: PanierItem = new PanierItem
 
-  constructor() {
-    console.log('Hello PanierItemComponent Component');
+  constructor(private view: ViewController, private navCtrl: NavController, params: NavParams) {
+    this.panierItem = params.get("produit");
 
   }
 
-  addPanierItem(){}
+  addPanierItem() {
+    this.view.dismiss(
+      { "panierItem": this.panierItem }
+    );
 
-  clearPanierItem(){}
+  }
+
+  clearPanierItem() {
+    this.panierItem.prix = null;
+    this.panierItem.quantite = null;
+
+  }
+
+  closeAndClearModal() {
+    this.clearPanierItem();
+    this.navCtrl.pop();
+  }
 
 }
 
